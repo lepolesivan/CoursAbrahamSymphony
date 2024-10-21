@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Creer une évènement {% endblock %}
+
+{% block body %}
+    {# {{ form(form)}} #}
+<div class="container">
+    {{ form_start(form) }}
+        <div class="mb-3">
+            {{ form_row(form.title) }}
+        </div>
+        <div class="mb-3">
+            {{ form_row(form.description) }}
+        </div>
+        <div class="mb-3">
+            {{ form_row(form.date) }}
+        </div>
+        <div class="mb-3">
+            {{ form_row(form.localisation) }}
+        </div>
+        <div class="mb-3">
+            {{ form_row(form.maxParticipant) }}
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

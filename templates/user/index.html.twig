@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}🤑 Les apprenants{% endblock %}
+
+{% block body %}
+<div class="container pt-3">
+    <h1 class="text-center">Hello! ✅</h1>
+
+    <h3>Les apprenants du pole S</h3>
+    <ul>
+    {% for item in users %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
