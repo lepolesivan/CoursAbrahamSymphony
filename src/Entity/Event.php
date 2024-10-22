@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\EventRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints;
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 class Event
@@ -15,12 +17,18 @@ class Event
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\Length(
+        min: 5,
+        minMessage: "Trop court"
+    )]
     private ?string $title = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Constraints\NotBlank]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Constraints\Date]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 200)]
