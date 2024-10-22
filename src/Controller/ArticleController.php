@@ -10,12 +10,17 @@ use App\Form\ArticleType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Article;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ArticleController extends AbstractController
 {
     #[Route('/article', name: 'app_article')]
+    // #[IsGranted("ROLE_ADMIN")]
     public function index(ArticleRepository $repository): Response
     {
+        if(!$this->isGranted('ROLE_ADMIN')){
+            return $this->redirectToRoute('app_denied');
+        }
         $articles = $repository->findAll();
         return $this->render('article/index.html.twig', [
             'articles' => $articles,
@@ -80,5 +85,12 @@ class ArticleController extends AbstractController
     public function delete(EntityManagerInterface $em, ArticleRepository $repository, int $id)
     {
         $article = $repository->find($id);
+        $em->remove($article);
+        $em->flush();
+
+        $articles = $repository->findAll();
+        return $this->render('article/index.html.twig', [
+            'articles' => $articles,
+        ]);
     }
 }
