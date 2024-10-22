@@ -34,7 +34,7 @@ class ArticleType extends AbstractType
                 ]
             ])
             ->add('save' , SubmitType::class, [
-                'label' => 'Modifier',
+                'label' => 'Envoyer',
                 'attr' => [
                     'class' => 'btn btn-success',
                 ]
