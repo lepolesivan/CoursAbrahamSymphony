@@ -5,3 +5,16 @@ body{
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
+
+.error ul{
+    padding: 0;
+}
+
+.error ul li{
+    list-style: none;
+    color: red;
+}
+
+.id label{
+    display: none;
+}

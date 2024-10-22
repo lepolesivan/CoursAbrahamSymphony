@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Modifier un article {% endblock %}
+
+{% block body %}
+<div class="container">
+    {{ form_start(form) }}
+        <div class="mb-3">
+            <div class="id">
+                {{ form_label(form.id) }}
+            </div>
+            {{ form_widget(form.id, {'attr': {'value': articles.title }}) }}
+            
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title, {'attr': {'value': articles.title }}) }}
+            <div class="error">
+                {{ form_errors(form.title) }}
+            </div>
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.content) }}
+            {{ form_widget(form.content, {'attr': {'value': articles.content }}) }}
+            <div class="error">
+                {{ form_errors(form.content) }}
+            </div>
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

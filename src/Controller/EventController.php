@@ -15,25 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class EventController extends AbstractController
 {
-    #[Route('/create', name: 'create')]
-    public function create(Request $request, EntityManagerInterface $em)
-    {
-        // creer unce instance du formulaire EventType
-        $form = $this->createForm(EventType::class);
-
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-            $data = $form->getData();
-            $em->persist($data);
-            $em->flush();
-        }
-
-        return $this->render('event/create.html.twig', [
-            'form' => $form //transmet le formulaire au template
-        ]);
-    }
-
     #[Route('/event', name: 'app_event')]
     public function index(): Response
     {
@@ -89,6 +70,27 @@ class EventController extends AbstractController
         $events = $repository->findAll();
         return $this->render('event/index.html.twig' , [
             'events' => $events
+        ]);
+    }
+
+    #[Route('/create', name: 'create')]
+    public function create(Request $request, EntityManagerInterface $em)
+    {
+        // creer unce instance du formulaire EventType
+        $form = $this->createForm(EventType::class);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $data = $form->getData();
+            $em->persist($data);
+            $em->flush();
+
+            return new Response("Evenement créer");
+        }
+
+        return $this->render('event/create.html.twig', [
+            'form' => $form //transmet le formulaire au template
         ]);
     }
 

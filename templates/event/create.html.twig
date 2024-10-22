@@ -7,19 +7,39 @@
 <div class="container">
     {{ form_start(form) }}
         <div class="mb-3">
-            {{ form_row(form.title) }}
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title) }}
+            <div class="error">
+                {{ form_errors(form.title) }}
+            </div>
         </div>
         <div class="mb-3">
-            {{ form_row(form.description) }}
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
+            <div class="error">
+                {{ form_errors(form.description) }}
+            </div>
         </div>
         <div class="mb-3">
-            {{ form_row(form.date) }}
+            {{ form_label(form.date) }}
+            {{ form_widget(form.date) }}
+            <div class="error">
+                {{ form_errors(form.date) }}
+            </div>
         </div>
         <div class="mb-3">
-            {{ form_row(form.localisation) }}
+            {{ form_label(form.localisation) }}
+            {{ form_widget(form.localisation) }}
+            <div class="error">
+                {{ form_errors(form.localisation) }}
+            </div>
         </div>
         <div class="mb-3">
-            {{ form_row(form.maxParticipant) }}
+            {{ form_label(form.maxParticipant) }}
+            {{ form_widget(form.maxParticipant) }}
+            <div class="error">
+                {{ form_errors(form.maxParticipant) }}
+            </div>
         </div>
     {{ form_end(form) }}
 </div>
