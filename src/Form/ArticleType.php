@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Entity\Article;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 
@@ -16,11 +17,11 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('id', TextType::class, [
-                'attr' => [
-                    'hidden' => true,
-                ]
-            ])
+            // ->add('id', TextType::class, [
+            //     'attr' => [
+            //         'hidden' => true,
+            //     ]
+            // ])
             ->add('title', TextType::class, [
                 'label' =>'title',
                 'attr' => [
@@ -32,6 +33,9 @@ class ArticleType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                 ]
+            ])
+            ->add('img', FileType::class, [
+                'label' => 'choisir une image'
             ])
             ->add('save' , SubmitType::class, [
                 'label' => 'Envoyer',

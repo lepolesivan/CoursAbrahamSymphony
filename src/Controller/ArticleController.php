@@ -36,6 +36,12 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+            $file = $form->get('img')->getData(); // Sert à récuperer l'image
+            if($file){
+                $fileNAme = uniqid() . '.' . $file->guessExtension();
+                $file->move($this->getParameter('upload_directory'), $fileNAme);
+            }
+
             $data = $form->getData();
             $em->persist($data);
             $em->flush();
