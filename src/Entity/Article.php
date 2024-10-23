@@ -10,7 +10,7 @@ class Article
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     public ?int $id = null;
 
     #[ORM\Column(length: 100)]
@@ -18,6 +18,9 @@ class Article
 
     #[ORM\Column(length: 200, nullable: true)]
     private ?string $content = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $img = null;
 
     public function getId(): ?int
     {
@@ -44,6 +47,18 @@ class Article
     public function setContent(?string $content): static
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(?string $img): static
+    {
+        $this->img = $img;
 
         return $this;
     }
